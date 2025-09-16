@@ -1,8 +1,11 @@
 # **cisco-enterprise-gns3-network**
 
-A comprehensive GNS3-based enterprise network built with Cisco IOS and ASAv
-platforms, demonstrating scalable design, advanced routing, high availability,
-security integration, and structured network documentation.
+Comprehensive Cisco enterprise network built in GNS3 demonstrating scalable
+multi-site architecture incorporating core switching concepts, advanced
+routing protocols, integrated security controls, and high-availability design.
+Features structured technical documentation, network topology diagrams,
+automated connectivity testing using Bash scripts, and failover validation
+complete with implementation details and validation results.
 
 ---
 
@@ -261,7 +264,7 @@ communication between internal and external networks.
 
 - **Key Features:**
   - **Network Address Translation (NAT/PAT):**
-    - Static NAT for internal servers using IPs `172.20.1.3`–`172.20.1.5`.
+    - Static NAT for internal servers using IPs `172.20.1.3` - `172.20.1.5`.
     - Dynamic PAT for all internal hosts using IP `172.20.1.6`.
   - **Access Control Lists (ACLs):**
     - Extended ACL applied to the `outside` interface to allow external
@@ -554,7 +557,7 @@ configured with security best practices in mind:
 #### Overview
 
 This section outlines the **external connectivity components** used to
-validate the network’s behavior under real-world conditions. These elements
+validate the network's behavior under real-world conditions. These elements
 are not part of the internal enterprise network but are essential for
 testing **NAT policies**, **access control rules**, and **internet access**.
 The network uses simulated public IP ranges to represent the **Main Site**,
@@ -569,7 +572,7 @@ routing and enable connectivity between public IP ranges.
   - **Static Routing:** Configured with static routes to allow return traffic
     for NAT-translated communications.
   - **Public IP Simulation:** Used to simulate public IP ranges for:
-    - **Main Site:** `172.20.1.2`–`172.20.1.6`
+    - **Main Site:** `172.20.1.2` - `172.20.1.6`
     - **Remote Site:** `172.25.1.2`
     - **External Web Client:** `172.30.1.2`
   - **Connectivity Testing:** Enables testing of site-to-site communication,
@@ -583,7 +586,7 @@ routing and enable connectivity between public IP ranges.
 #### GNS3-CLOUD (GNS3 Cloud Appliance)
 
 - **Role:** Provides a bridge between the GNS3 virtual network and the host
-  machine’s physical network.
+  machine's physical network.
 
 - **Key Features:**
   - **Host Network Integration:** Connected to the host machine's ethernet
@@ -617,7 +620,7 @@ routing and enable connectivity between public IP ranges.
 
 ## 4. Testing and Validation
 
-This section validates the network’s core functionality through
+This section validates the network's core functionality through
 four key tests: internal and external host connectivity, OSPF dynamic
 routing behavior, and HSRP redundancy and failover. These tests
 confirm that the network operates as designed, with proper routing,
