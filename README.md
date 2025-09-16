@@ -4,8 +4,8 @@ Comprehensive Cisco enterprise network built in GNS3 demonstrating scalable
 multi-site architecture incorporating core switching concepts, advanced
 routing protocols, integrated security controls, and high-availability design.
 Features structured technical documentation, network topology diagrams,
-automated connectivity testing using Bash scripts, and failover validation
-complete with implementation details and validation results.
+automated connectivity testing, and failover validation complete with
+implementation details and validation results.
 
 ---
 
@@ -43,22 +43,26 @@ complete with implementation details and validation results.
 
 ### 1.1 Network Purpose and Scope
 
-This repository presents the design and implementation of an enterprise-grade
-network built using Cisco networking and security technologies. Constructed in
-GNS3, the network demonstrates a layered, secure, and scalable architecture
-that integrates core routing, switching, VLAN segmentation, redundancy,
-security policy enforcement, and remote connectivity via site-to-site VPN.
+This repository presents more than a collection of configured devices:
+it demonstrates enterprise-grade network architecture built for scale,
+security, and resilience. The implementation employs VLAN segmentation with
+EtherChannel for resilient switching, leverages OSPF and HSRP for redundant
+routing paths, and integrates ASA firewalls with ACLs and VPN tunnels to
+enforce defense-in-depth security. These integrated technologies, validated
+through automated testing and presented with comprehensive documentation,
+create an infrastructure designed to support critical business operations.
 
-Developed through a combination of real-world experience, CCNA coursework,
-self-study, and hands-on experimentation with Cisco IOS and ASA platforms,
-this project serves to showcase my ability to design, configure, and document
-a complex network environment in alignment with industry best practices.
+Developed through a combination of real-world experience, formal CCNA
+curriculum through Cisco Networking Academy, self-study, and hands-on
+experimentation with Cisco IOS and ASA platforms, this project showcases
+my ability to design, configure, and document enterprise network
+infrastructure in alignment with industry best practices.
 
 This repository is intended for technical professionals and hiring managers
 seeking to evaluate my practical understanding of enterprise networking and
 security principles. I invite you to explore the implementation details that
-follow, which reflect both my technical proficiency and my commitment to
-clean, structured network design.
+follow, which reflect both my networking expertise and my approach to
+engineering production-ready infrastructure.
 
 ### 1.2 Technologies and Skills Demonstrated
 
