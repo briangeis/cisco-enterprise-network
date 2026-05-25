@@ -1,0 +1,2 @@
+# Exclude testing scripts from language statistics
+scripts/*.sh linguist-vendored
