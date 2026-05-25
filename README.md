@@ -1,13 +1,13 @@
-# **cisco-enterprise-gns3-network**
+# cisco-enterprise-network
 
-Comprehensive Cisco enterprise network built in GNS3 demonstrating scalable
-multi-site architecture incorporating core switching concepts, advanced
-routing protocols, integrated security controls, and high-availability design.
-Features structured technical documentation, network topology diagrams,
-automated connectivity testing, and failover validation complete with
-implementation details and validation results.
+[![Status](https://img.shields.io/badge/status-complete-brightgreen)](https://github.com/briangeis/cisco-enterprise-network)
+[![Platform](https://img.shields.io/badge/platform-Cisco%20IOS-blue)](https://github.com/briangeis/cisco-enterprise-network)
+[![License](https://img.shields.io/github/license/briangeis/cisco-enterprise-network?color=blue)](LICENSE)
 
----
+A Cisco enterprise network built in GNS3, demonstrating scalable multi-site
+design with high availability, integrated security, and failover validation.
+The network design and implementation are covered in depth through structured
+documentation, topology diagrams, and validation results.
 
 ## Table of Contents
 
@@ -18,6 +18,7 @@ implementation details and validation results.
 &nbsp;&nbsp;2.1 [IP Addressing Scheme](#21-ip-addressing-scheme)  
 &nbsp;&nbsp;2.2 [Network Topology](#22-network-topology)  
 &nbsp;&nbsp;2.3 [Device Inventory](#23-device-inventory)  
+&nbsp;&nbsp;2.4 [VLAN Table](#24-vlan-table)  
 &nbsp;&nbsp;2.5 [Interface and IP Assignments](#25-interface-and-ip-assignments)  
 3. [Implementation](#3-implementation)  
 &nbsp;&nbsp;3.1 [Edge Site (Network Perimeter)](#31-edge-site-network-perimeter)  
@@ -37,32 +38,23 @@ implementation details and validation results.
 &nbsp;&nbsp;B. [References](#b-references)  
 &nbsp;&nbsp;C. [License](#c-license)  
 
----
-
 ## 1. Overview
 
 ### 1.1 Network Purpose and Scope
 
-This repository presents more than a collection of configured devices:
-it demonstrates enterprise-grade network architecture built for scale,
-security, and resilience. The implementation employs VLAN segmentation with
-EtherChannel for resilient switching, leverages OSPF and HSRP for redundant
-routing paths, and integrates ASA firewalls with ACLs and VPN tunnels to
-enforce defense-in-depth security. These integrated technologies, validated
-through automated testing and presented with comprehensive documentation,
-create an infrastructure designed to support critical business operations.
+This project demonstrates enterprise-grade network architecture built for
+scale, security, and resilience. The implementation employs VLAN segmentation
+with EtherChannel for resilient switching, leverages OSPF and HSRP for redundant
+routing paths, and integrates ASA firewalls with ACLs and VPN tunnels to enforce
+defense-in-depth security. These integrated technologies, validated through
+automated testing and presented with comprehensive documentation, create an
+infrastructure designed to support critical business operations.
 
 Developed through a combination of real-world experience, formal CCNA
-curriculum through Cisco Networking Academy, self-study, and hands-on
-experimentation with Cisco IOS and ASA platforms, this project showcases
-my ability to design, configure, and document enterprise network
-infrastructure in alignment with industry best practices.
-
-This repository is intended for technical professionals and hiring managers
-seeking to evaluate my practical understanding of enterprise networking and
-security principles. I invite you to explore the implementation details that
-follow, which reflect both my networking expertise and my approach to
-engineering production-ready infrastructure.
+curriculum through Cisco Networking Academy, independent research, and
+direct experimentation with Cisco IOS and ASA platforms, this project
+presents enterprise network design, configuration, and documentation
+in alignment with industry best practices.
 
 ### 1.2 Technologies and Skills Demonstrated
 
@@ -88,8 +80,8 @@ demonstrated throughout the network implementation.
 - Internet Key Exchange version 2 (IKEv2) and IPsec for secure tunneling
 - Access Control Lists (ACLs) for traffic filtering and policy enforcement
 - Static and dynamic NAT/PAT for address translation
-- Port security (MAC limiting, PortFast, BPDU Guard) to prevent unauthorized
-  access
+- Port security (MAC limiting, PortFast, BPDU Guard)
+  to prevent unauthorized access
 - Secure remote access via SSH version 2
 - Access control for VTY lines using ACLs
 - Disabling of insecure services (Telnet, HTTP, CDP, DTP)
@@ -113,8 +105,6 @@ demonstrated throughout the network implementation.
 - GNS3 virtualization platform for network simulation
 - GNS3 Cloud Appliance for integration with the host network
 
----
-
 ## 2. Network Architecture and Design
 
 ### 2.1 IP Addressing Scheme
@@ -124,18 +114,18 @@ simulated public ranges to demonstrate external server access, internet
 connectivity, and site-to-site VPN operations, with a scheme designed to
 ensure segmentation, consistent subnetting, and scalability.
 
-Point-to-point links use `/30` subnets for efficient utilization.
-Main Site links range from `172.16.1.0/30` to `172.16.1.24/30`.
-The Remote Site uses `172.16.2.0/30`.
+Point-to-point links use `/30` subnets for efficient address utilization,
+with Main Site links ranging from `172.16.1.0/30` to `172.16.1.24/30` and
+the Remote Site link assigned `172.16.2.0/30`.
 
-User VLANs are assigned `/24` subnets for scalability and manageability.
-Main Site VLANs reside in the `10.1.0.0/16` block.
-Remote Site VLANs reside in the `10.2.0.0/16` block.
-Each VLAN is assigned a network-aligned default gateway.
+User VLANs are assigned `/24` subnets for scalability and manageability,
+with Main Site VLANs in the `10.1.0.0/16` block and Remote Site VLANs in
+the `10.2.0.0/16` block. Each VLAN is assigned a network-aligned default
+gateway.
 
-Public simulation ranges include `172.20.1.0/29` (Main Site),
-`172.25.1.0/24` (Remote Site), and `172.30.1.0/24` (simulated external host).
-These ranges are used to model NAT and internet access scenarios.
+Public simulation ranges include `172.20.1.0/29` (Main Site), `172.25.1.0/24`
+(Remote Site), and `172.30.1.0/24` (simulated external host). These ranges
+model NAT and internet access scenarios.
 
 ### 2.2 Network Topology
 
@@ -146,7 +136,7 @@ These ranges are used to model NAT and internet access scenarios.
 The following virtual appliances were used in the GNS3 simulation environment:
 
 | Device Type | GNS3 Appliance      | Image Type | OS/Version               |
-|-------------|---------------------|------------|--------------------------|
+|-------------|---------------------|:----------:|--------------------------|
 | Router      | Cisco IOSv          | QEMU       | Cisco IOS 15.9(3)M9      |
 | Switch      | Cisco IOSvL2        | QEMU       | Cisco IOS 15.2(20200924) |
 | ASA         | Cisco ASAv          | QEMU       | Cisco ASA 9.22(1)1       |
@@ -156,7 +146,7 @@ The following virtual appliances were used in the GNS3 simulation environment:
 ### 2.4 VLAN Table
 
 | Location    | VLAN | Name       | Network       |
-| ------------| ---- | ---------- | ------------- |
+|-------------|:----:|------------|:-------------:|
 | Server Room | 10   | Server     | 10.1.10.0 /24 |
 | Main Site   | 20   | NetAdmin   | 10.1.20.0 /24 |
 |             | 30   | Sales      | 10.1.30.0 /24 |
@@ -172,8 +162,8 @@ The following virtual appliances were used in the GNS3 simulation environment:
 ### 2.5 Interface and IP Assignments
 
 | Device       | Interface | Description                   | Address          |
-| ------------ | --------- | ------------------------------| ---------------- |
-| CLOUD        | G0/0      | Host Network Gateway                             |
+|--------------|-----------|-------------------------------|:----------------:|
+| CLOUD        | G0/0      | Host Network Gateway          | N/A              |
 |              | G0/1      | Cloud Gateway for ASA-MAIN    | 172.20.1.1 /29   |
 |              | G0/2      | Cloud Gateway for ASA-REMOTE  | 172.25.1.1 /24   |
 |              | G0/3      | Cloud Gateway for Web-Client  | 172.30.1.1 /24   |
@@ -186,7 +176,7 @@ The following virtual appliances were used in the GNS3 simulation environment:
 | R1           | G0/0      | Link to EDGE                  | 172.16.1.5 /30   |
 |              | G0/1      | Link to R2                    | 172.16.1.17 /30  |
 |              | G0/2      | Link to SW-WAREHOUSE          | 172.16.1.21 /30  |
-|              | G0/3      | Trunk Link to SW-FLOOR-1                         |
+|              | G0/3      | Trunk Link to SW-FLOOR-1      | N/A              |
 |              | G0/3.20   | NetAdmin VLAN 20 Gateway      | 10.1.20.2 /24    |
 |              | G0/3.30   | Sales VLAN 30 Gateway         | 10.1.30.2 /24    |
 |              | G0/3.40   | Marketing VLAN 40 Gateway     | 10.1.40.2 /24    |
@@ -194,7 +184,7 @@ The following virtual appliances were used in the GNS3 simulation environment:
 |              | G0/3.60   | Management VLAN 60 Gateway    | 10.1.60.2 /24    |
 | R2           | G0/0      | Link to EDGE                  | 172.16.1.9 /30   |
 |              | G0/1      | Link to R1                    | 172.16.1.18 /30  |
-|              | G0/2      | Trunk Link to SW-FLOOR-1                         |
+|              | G0/2      | Trunk Link to SW-FLOOR-1      | N/A              |
 |              | G0/2.20   | NetAdmin VLAN 20 Gateway      | 10.1.20.1 /24    |
 |              | G0/2.30   | Sales VLAN 30 Gateway         | 10.1.30.1 /24    |
 |              | G0/2.40   | Marketing VLAN 40 Gateway     | 10.1.40.1 /24    |
@@ -202,22 +192,22 @@ The following virtual appliances were used in the GNS3 simulation environment:
 |              | G0/2.60   | Management VLAN 60 Gateway    | 10.1.60.1 /24    |
 |              | G0/3      | Link to SW-WAREHOUSE          | 172.16.1.25 /30  |
 | SW-FLOOR-1   | VLAN 20   | Management SVI                | 10.1.20.11 /24   |
-|              | G0/0      | Trunk Link to R2                                 |
-|              | G0/1      | Trunk Link to R1                                 |
-|              | G3/0-1    | Port Channel 2                                   |
-|              | G3/2-3    | Port Channel 1                                   |
-|              | Po1       | Trunk Link to SW-FLOOR-2                         |
-|              | Po2       | Trunk Link to SW-FLOOR-3                         |
+|              | G0/0      | Trunk Link to R2              | N/A              |
+|              | G0/1      | Trunk Link to R1              | N/A              |
+|              | G3/0-1    | Port Channel 2                | N/A              |
+|              | G3/2-3    | Port Channel 1                | N/A              |
+|              | Po1       | Trunk Link to SW-FLOOR-2      | N/A              |
+|              | Po2       | Trunk Link to SW-FLOOR-3      | N/A              |
 | SW-FLOOR-2   | VLAN 20   | Management SVI                | 10.1.20.12 /24   |
-|              | G3/0-1    | Port Channel 3                                   |
-|              | G3/2-3    | Port Channel 1                                   |
-|              | Po1       | Trunk Link to SW-FLOOR-1                         |
-|              | Po3       | Trunk Link to SW-FLOOR-3                         |
+|              | G3/0-1    | Port Channel 3                | N/A              |
+|              | G3/2-3    | Port Channel 1                | N/A              |
+|              | Po1       | Trunk Link to SW-FLOOR-1      | N/A              |
+|              | Po3       | Trunk Link to SW-FLOOR-3      | N/A              |
 | SW-FLOOR-3   | VLAN 20   | Management SVI                | 10.1.20.13 /24   |
-|              | G3/0-1    | Port Channel 3                                   |
-|              | G3/2-3    | Port Channel 2                                   |
-|              | Po2       | Trunk Link to SW-FLOOR-1                         |
-|              | Po3       | Trunk Link to SW-FLOOR-2                         |
+|              | G3/0-1    | Port Channel 3                | N/A              |
+|              | G3/2-3    | Port Channel 2                | N/A              |
+|              | Po2       | Trunk Link to SW-FLOOR-1      | N/A              |
+|              | Po3       | Trunk Link to SW-FLOOR-2      | N/A              |
 | SW-EDGE      | VLAN 10   | Server VLAN 10 Gateway        | 10.1.10.1 /24    |
 |              | G0/0      | Link to EDGE                  | 172.16.1.13 /30  |
 | Server-01    | VLAN 10   | Public Web Server 1           | 10.1.10.10 /24   |
@@ -234,14 +224,12 @@ The following virtual appliances were used in the GNS3 simulation environment:
 |              | VLAN 70   | Shipping VLAN 70 Gateway      | 10.2.70.1 /24    |
 |              | G0/0      | Link to ASA-REMOTE            | 172.16.2.2 /30   |
 | Web-Client             | | Simulated External Web Client | 172.30.1.2 /24   |
-| GNS3 Cloud Appliance   | | Host Network Bridge                              |
+| GNS3 Cloud Appliance   | | Host Network Bridge           | N/A              |
 | HSRP                   | | VLAN 20 Virtual Gateway       | 10.1.20.3 /24    |
 |                        | | VLAN 30 Virtual Gateway       | 10.1.30.3 /24    |
 |                        | | VLAN 40 Virtual Gateway       | 10.1.40.3 /24    |
 |                        | | VLAN 50 Virtual Gateway       | 10.1.50.3 /24    |
 |                        | | VLAN 60 Virtual Gateway       | 10.1.60.3 /24    |
-
----
 
 ## 3. Implementation
 
@@ -279,7 +267,7 @@ communication between internal and external networks.
     is allowed through the perimeter.
   - **Site-to-Site IKEv2 VPN:** A secure, encrypted tunnel established with
     `ASA-REMOTE` using IP `172.20.1.2` to maintain confidentiality and
-    integrity of data transmitted between the main network and the remote site.
+    integrity of data transmitted between the Main Site and the Remote Site.
 
 - **Connectivity:**
   - **Outside Interface:**
@@ -349,8 +337,9 @@ capabilities.
 
 - **Connectivity:**
   - End-user devices connected via access ports assigned to specific VLANs.
-  - Trunk links established between switches using EtherChannel.
-  - `SW-FLOOR-1` connects to both `R2` and `R1` to ensure routing redundancy.
+  - Connected to adjacent floor switches via LACP EtherChannel trunk links.
+  - `SW-FLOOR-1` maintains a primary connection to `R2` and a backup
+    connection to `R1` for inter-VLAN routing.
 
 #### R1 (Layer 3 Router)
 
@@ -386,7 +375,7 @@ capabilities.
 - **Connectivity:**
   - Connected to `EDGE` Router for access to core services and the internet.
   - Primary connection to `SW-FLOOR-1` for inter-VLAN routing.
-  - Backup connection to `SW-WAREHOUSE` for redundancy.
+  - Backup connection to `SW-WAREHOUSE` for routing redundancy.
 
 ### 3.3 Server Room
 
@@ -410,10 +399,10 @@ services such as application or database servers.
     ensure seamless communication with other network segments.
 
 - **Connectivity:**
-  - Servers are connected to access ports assigned to the dedicated server
-    VLAN.
-  - Connected to the `EDGE` Router to enable communication with internal
-    clients and external internet access via `ASA-MAIN`.
+  - Server devices connected via access ports
+    assigned to the dedicated server VLAN.
+  - Connected to `EDGE` for server VLAN routing
+    and internet access via `ASA-MAIN`.
 
 #### Servers
 
@@ -463,8 +452,8 @@ operational tools used in warehouse management.
 
 - **Connectivity:**
   - End-user devices connected via access ports assigned to specific VLANs.
-  - Connected to `R1` (primary) and `R2` (backup) in the Main Site to ensure
-    redundant routing paths and network resilience.
+  - Primary connection to `R1` for routing to the Main Site and internet access.
+  - Backup connection to `R2` for routing redundancy.
 
 ### 3.5 Remote Site
 
@@ -473,8 +462,8 @@ operational tools used in warehouse management.
 The **Remote Site** represents a geographically separate location such as a
 home office, branch office, or satellite facility. It maintains secure
 connectivity to the main network via a site-to-site **IKEv2 VPN tunnel** and
-provides local network services to remote users. This design supports
-secure, scalable, and segmented access to both local and corporate resources.
+provides local network services to remote users. This design supports secure,
+scalable, and segmented access to both local and corporate resources.
 
 #### SW-REMOTE (Layer 3 Switch)
 
@@ -507,7 +496,7 @@ secure, scalable, and segmented access to both local and corporate resources.
     is allowed through the perimeter.
   - **Site-to-Site IKEv2 VPN:** A secure, encrypted tunnel established with
     `ASA-MAIN` to maintain confidentiality and integrity of data transmitted
-    between the Remote Site and the main network.
+    between the Remote Site and the Main Site.
 
 - **Connectivity:**
   - **Outside Interface:** Connected to the `CLOUD` Router for internet
@@ -560,12 +549,12 @@ configured with security best practices in mind:
 
 #### Overview
 
-This section outlines the **external connectivity components** used to
+This section outlines the external connectivity components used to
 validate the network's behavior under real-world conditions. These elements
 are not part of the internal enterprise network but are essential for
-testing **NAT policies**, **access control rules**, and **internet access**.
-The network uses simulated public IP ranges to represent the **Main Site**,
-**Remote Site**, and a test client.
+testing NAT policies, access control rules, and internet access.
+The network uses simulated public IP ranges to represent the Main Site,
+Remote Site, and a test client.
 
 #### CLOUD Router
 
@@ -583,8 +572,10 @@ routing and enable connectivity between public IP ranges.
     NAT policies, and internet access.
 
 - **Connectivity:**
-  - Connected to `ASA-MAIN` outside interface.
-  - Connected to `ASA-REMOTE` outside interface.
+  - Connected to `ASA-MAIN` outside interface to simulate internet connectivity
+    for the Main Site.
+  - Connected to `ASA-REMOTE` outside interface to simulate internet
+    connectivity for the Remote Site.
   - Connected to `Web-Client` to simulate an external host.
 
 #### GNS3-CLOUD (GNS3 Cloud Appliance)
@@ -593,7 +584,7 @@ routing and enable connectivity between public IP ranges.
   machine's physical network.
 
 - **Key Features:**
-  - **Host Network Integration:** Connected to the host machine's ethernet
+  - **Host Network Integration:** Connected to the host machine's Ethernet
     adapter, allowing the virtual network to reach external DNS, web services,
     or perform software updates.
   - **Not Part of Logical Design:** This device is used solely for **testing
@@ -602,7 +593,7 @@ routing and enable connectivity between public IP ranges.
 
 - **Connectivity:**
   - Connected to `CLOUD` Router to provide internet access.
-  - Connected to internet via host ethernet adapter.
+  - Connected to the host network via Ethernet adapter for internet access.
 
 #### Web-Client (Simulated External Host)
 
@@ -619,8 +610,6 @@ routing and enable connectivity between public IP ranges.
 
 - **Connectivity:**
   - Connected to `CLOUD` Router for simulated internet access.
-
----
 
 ## 4. Testing and Validation
 
@@ -645,7 +634,7 @@ This script ensures that:
   via DHCP from `EDGE`
 - VLAN segmentation and routing are functioning correctly
 - Internal HTTP services are accessible from all internal VLANs
-- The Site-to-Site VPN tunnel is active and supports inter-VLAN
+- The site-to-site VPN tunnel is active and supports inter-VLAN
   routing and DHCP services
 
 #### Script Location
@@ -667,9 +656,9 @@ A Bash script is executed from the **Web-Client (external host)** to verify:
 | `curl`    | Validate HTTP access to publicly exposed internal servers |
 
 This script ensures that:
-- Servers behind `ASA-MAIN` are accessible via **static NAT** and **ACLs**
+- Servers behind `ASA-MAIN` are accessible via static NAT and ACLs
 - ICMP is explicitly allowed to internal servers only
-- `ASA-MAIN` is enforcing **stateful inspection** and **access control**
+- `ASA-MAIN` is enforcing stateful inspection and access control
 
 #### Script Location
 
@@ -747,6 +736,7 @@ show standby brief
   it had transitioned from standby to active status.
 
 This test confirms that:
+
 - HSRP is configured and functioning correctly under normal conditions
 - Failover occurs automatically and seamlessly when the active router
   becomes unavailable
@@ -761,8 +751,6 @@ All results are included in the following files:
 - [results/hsrp_status_before.txt](results/hsrp_status_before.txt)
 - [results/hsrp_traceroute_after.txt](results/hsrp_traceroute_after.txt)
 - [results/hsrp_status_after.txt](results/hsrp_status_after.txt)
-
----
 
 ## Appendices
 
@@ -795,8 +783,4 @@ All results are included in the following files:
 
 ### C. License
 
-This project is licensed under the GNU General Public License v3.0.  
-A copy of the license is available in the `LICENSE` file.
-
----
-
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
