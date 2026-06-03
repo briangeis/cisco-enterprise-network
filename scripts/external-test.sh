@@ -1,12 +1,14 @@
 #!/bin/bash
-
-###############################################################################
-# Script name:    external-test.sh
-# Description:    External Host Connectivity Script
-# Author:         Brian Geis
-# GitHub:         https://github.com/briangeis/cisco-enterprise-gns3-network
-# Copyright:      GNU General Public License v3.0
-###############################################################################
+#
+# cisco-enterprise-network
+# https://github.com/briangeis/cisco-enterprise-network
+#
+# External Connectivity Test
+# Verifies external host reachability via ping, HTTP, and DNS.
+#
+# Author:  Brian Geis
+# License: GPL-3.0-or-later
+#
 
 main() {
   # Define the IP addresses of HTTP servers
@@ -43,7 +45,7 @@ main() {
   for server in "${!servers[@]}"; do
     local url="${servers[$server]}"
     printf "Testing HTTP connectivity to %s (%s)... " "${server}" "${url}"
-    if curl -s --output /dev/null --connect-timeout 5 "${url}"; then
+    if curl -sf --output /dev/null --connect-timeout 5 "${url}"; then
       printf "OK\n"
     else
       printf "FAILED\n"
@@ -51,8 +53,8 @@ main() {
   done
 
   # Perform DNS resolution test
-  printf "Testing DNS resolution for %s..." "${domain}"
-  if dig +short "${domain}" &>/dev/null; then
+  printf "Testing DNS resolution for %s... " "${domain}"
+  if [[ -n "$(dig +short "${domain}")" ]]; then
     printf "OK\n"
   else
     printf "FAILED\n"
